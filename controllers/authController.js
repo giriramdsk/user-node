@@ -1,6 +1,4 @@
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwtHelper = require('../helper/jwt.helper')
 
 exports.signup = async (req, res) => {
     const { firstName, lastName, email, mobile, password } = req.body;
@@ -58,3 +56,13 @@ exports.login = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+const JWT = require("jsonwebtoken")
+
+exports.logout = async(req,res)=>{
+    const token = req.headers['authorization'].split(' ')[1];
+    console.log(token)
+    if (token) {
+       await blacklist.add(token); // Add the token to the blacklist
+    }
+    res.status(200).send({ message: 'Logged out successfully' });
+}
