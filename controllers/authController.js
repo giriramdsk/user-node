@@ -62,7 +62,7 @@ exports.logout = async(req,res)=>{
     const token = req.headers['authorization'].split(' ')[1];
     console.log(token)
     if (token) {
-       await blacklist.add(token); // Add the token to the blacklist
+       await blacklist.add(token); 
     }
     res.status(200).send({ message: 'Logged out successfully' });
 }

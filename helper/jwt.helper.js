@@ -51,17 +51,14 @@ verifyUser = (req, res, next) => {
 
 checkBlacklist = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];
-console.log(blacklist.has(token))
     if (token && blacklist.has(token)) {
         return res.status(401).send({ message: 'Token is invalidated' });
     }
-
     next();
 }
 
 blackListAdd =(req, res, next)=> {
     const token = req.headers['authorization']?.split(' ')[1];
-console.log(blacklist)
     if (token) {
 		blacklist.add(token)
 		return res.status(401).send({ message: 'Token is LoggedOut' });
